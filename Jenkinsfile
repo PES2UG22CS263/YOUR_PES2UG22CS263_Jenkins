@@ -5,8 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo "Building the application..."
-                    sh "make -C main clean && make -C main hello_exec"
+                    echo 'Building C++ Project...'
+                    sh 'g++ -o PES2UG22CS263-1 my_progr.cpp'  
                 }
             }
         }
@@ -14,8 +14,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    echo "Running tests..."
-                    sh "./main/hello_exec"
+                    echo 'Running Tests...'
+                    sh './PES2UG22CS263-1' 
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    echo "Deploying application..."
+                    echo 'Deploying the application...'
                     sh 'echo "Deployment successful!"'
                 }
             }
@@ -32,10 +32,7 @@ pipeline {
 
     post {
         failure {
-            echo "Pipeline failed"
-        }
-        success {
-            echo "Pipeline completed successfully!"
+            echo 'Pipeline failed! Please check the logs for errors.'
         }
     }
 }
